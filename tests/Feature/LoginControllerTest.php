@@ -24,10 +24,10 @@ class LoginControllerTest extends TestCase
         parent::setup();
 
         $this->customer = Customer::factory([
-                'email' => 'customer@example.com',
+                'email' => 'customer-test@example.com',
             ])->create();
         $this->deletedCustomer = Customer::factory([
-                'email' => 'deleted@example.com',
+                'email' => 'deleted-test@example.com',
                 'deleted_at' => Carbon::now(),
             ])->create();
     }
@@ -88,7 +88,7 @@ class LoginControllerTest extends TestCase
         return [
             [
                 'data' => [
-                    'email' => 'customer@example.com',
+                    'email' => 'customer-test@example.com',
                     // factoryで指定しているpasswordを指定
                     'password' => 'password',
                 ],
@@ -119,7 +119,7 @@ class LoginControllerTest extends TestCase
         return [
             [
                 'data' => [
-                    'email' => 'deleted@example.com',
+                    'email' => 'deleted-test@example.com',
                     'password' => 'password',
                 ],
             ],
