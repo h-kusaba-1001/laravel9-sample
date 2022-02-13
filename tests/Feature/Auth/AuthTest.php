@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Auth\AdminUser;
+namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -11,13 +11,6 @@ use Tests\TestCase;
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
-    
-    /**
-     * seed
-     *
-     * @var bool
-     */
-    protected $seed = true;
 
     /**
      * @dataProvider validAuthenticationProvider
@@ -30,7 +23,6 @@ class AuthTest extends TestCase
 
     /**
      * seedで設定しているユーザをセット
-     * @see database/seeders/Develop/DebugAdminUserSeeder.php
      * @return array
      */
     public function validAuthenticationProvider(): array
