@@ -1,13 +1,12 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature\Admin\Auth;
 
+use App\Models\AdminUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-/**
- * AuthTest
- */
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
@@ -18,7 +17,7 @@ class AuthTest extends TestCase
      */
     public function testValidAuthentication(array $data)
     {
-        $this->assertCredentials($data);
+        $this->assertCredentials($data, 'admin');
     }
 
     /**
@@ -30,7 +29,7 @@ class AuthTest extends TestCase
         return [
             [
                 'data' => [
-                    'email' => 'customer@example.com',
+                    'login_id' => 'valid',
                     'password' => 'password',
                 ],
             ],
@@ -43,7 +42,7 @@ class AuthTest extends TestCase
      */
     public function testInvalidAuthentication(array $data)
     {
-        $this->assertInvalidCredentials($data);
+        $this->assertInvalidCredentials($data, 'admin');
     }
 
     /**
@@ -55,7 +54,11 @@ class AuthTest extends TestCase
         return [
             [
                 'data' => [
-                    'email' => 'deleted@example.com',
+                    'login_id' => 'inactive',
+                    'password' => 'password',
+                ],
+                'data' => [
+                    'login_id' => 'deleted',
                     'password' => 'password',
                 ],
             ],
